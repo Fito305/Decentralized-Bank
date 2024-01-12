@@ -37,6 +37,8 @@
             // Security: Avoids forwarding referrer information to other origins.
             // See: https://owasp.org/www-project-secure-headers/#referrer-policy.
             "Referrer-Policy": "same-origin",
+            "Access-Control-Allow_Origin": "*",
+            //ADDED line 40
 
             // Security: Tells the user’s browser that it must always use HTTPS with your site.
             // See: https://owasp.org/www-project-secure-headers/#http-strict-transport-security
@@ -45,6 +47,8 @@
             // Security: Prevents the browser from interpreting files as a different MIME type to what is specified in the Content-Type header.
             // See: https://owasp.org/www-project-secure-headers/#x-content-type-options
             "X-Content-Type-Options": "nosniff",
+            "Content-type": "text/css",
+            //ADDED THIS line 50  
 
             // Security: Enables browser features to mitigate some of the XSS attacks. Note that it has to be in mode=block.
             // See: https://owasp.org/www-community/attacks/xss/

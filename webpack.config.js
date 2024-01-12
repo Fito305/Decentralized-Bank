@@ -25,7 +25,7 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   resolve: {
-    extensions: [".js", ".ts", ".jsx", ".tsx"],
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".css"],
     fallback: {
       assert: require.resolve("assert/"),
       buffer: require.resolve("buffer/"),
@@ -44,12 +44,21 @@ module.exports = {
   // webpack configuration. For example, if you are using React
   // modules and CSS as described in the "Adding a stylesheet"
   // tutorial, uncomment the following lines:
-  // module: {
-  //  rules: [
-  //    { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
-  //    { test: /\.css$/, use: ['style-loader','css-loader'] }
-  //  ]
-  // },
+  module: {
+   rules: [
+     { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
+     { test: /\.css$/i, use: ['style-loader','css-loader'] },
+     // { test: /\.(png|jpe?g|gif)$/i, use: [ { loader: 'file-loader' } ], 
+     //     options: {
+     //         name: './src/dbank_frontend/assets/dbank_logo.png'
+     //    }
+     // }
+     // { test: /\.mo$/, use: ['motoko-loader'] },
+     // { test: /\.did$/, use: ['did-loader'] }
+
+   ]
+  }, 
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, frontend_entry),
@@ -81,7 +90,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:4943",
+        target: "http://127.0.0.1:8080",
         changeOrigin: true,
         pathRewrite: {
           "^/api": "/api",
